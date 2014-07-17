@@ -32,7 +32,7 @@
     <properties>
         <owb.version>1.2.1</owb.version>
         <weld.version>1.1.16.Final</weld.version>
-        <ds.version>1.0.0</ds.version>
+        <ds.version>1.0.1</ds.version>
     </properties>
 
     <repositories>
