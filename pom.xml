@@ -63,7 +63,6 @@
             <groupId>org.apache.deltaspike.cdictrl</groupId>
             <artifactId>deltaspike-cdictrl-api</artifactId>
             <version>${ds.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -141,7 +140,7 @@
                     <groupId>org.apache.deltaspike.cdictrl</groupId>
                     <artifactId>deltaspike-cdictrl-owb</artifactId>
                     <version>${ds.version}</version>
-                    <scope>test</scope>
+                    <scope>runtime</scope>
                 </dependency>
             </dependencies>
         </profile>
