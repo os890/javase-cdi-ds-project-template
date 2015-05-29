@@ -30,9 +30,10 @@
     <version>1.0.0</version>
 
     <properties>
-        <owb.version>1.2.1</owb.version>
+        <owb12.version>1.2.1</owb12.version>
+        <owb15.version>1.5.0</owb15.version>
         <weld.version>1.1.16.Final</weld.version>
-        <ds.version>1.2.1</ds.version>
+        <ds.version>1.4.0</ds.version>
     </properties>
 
     <repositories>
@@ -101,7 +102,7 @@
 
     <profiles>
         <profile>
-            <id>OWB</id>
+            <id>OWB12</id>
 
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -126,13 +127,59 @@
                 <dependency>
                     <groupId>org.apache.openwebbeans</groupId>
                     <artifactId>openwebbeans-impl</artifactId>
-                    <version>${owb.version}</version>
+                    <version>${owb12.version}</version>
                     <scope>runtime</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.openwebbeans</groupId>
                     <artifactId>openwebbeans-spi</artifactId>
-                    <version>${owb.version}</version>
+                    <version>${owb12.version}</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.deltaspike.cdictrl</groupId>
+                    <artifactId>deltaspike-cdictrl-owb</artifactId>
+                    <version>${ds.version}</version>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>OWB15</id>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-atinject_1.0_spec</artifactId>
+                    <version>1.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-jcdi_1.1_spec</artifactId>
+                    <version>1.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-interceptor_1.2_spec</artifactId>
+                    <version>1.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-annotation_1.2_spec</artifactId>
+                    <version>1.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.openwebbeans</groupId>
+                    <artifactId>openwebbeans-impl</artifactId>
+                    <version>${owb15.version}</version>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.openwebbeans</groupId>
+                    <artifactId>openwebbeans-spi</artifactId>
+                    <version>${owb15.version}</version>
                     <scope>runtime</scope>
                 </dependency>
 
