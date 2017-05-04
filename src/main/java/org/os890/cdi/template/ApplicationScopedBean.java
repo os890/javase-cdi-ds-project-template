@@ -23,7 +23,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class ApplicationScopedBean
 {
-    public int getValue()
+    public Integer getValue()
     {
         return 14;
     }

@@ -19,6 +19,7 @@
 package org.os890.cdi.test;
 
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
+import org.apache.deltaspike.testcontrol.api.mock.DynamicMockManager;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,15 +27,24 @@ import org.os890.cdi.template.ApplicationScopedBean;
 
 import javax.inject.Inject;
 
+import static org.mockito.Mockito.*;
+
 @RunWith(CdiTestRunner.class)
-public class SimpleTest
+public class SimpleMockTest
 {
     @Inject
     private ApplicationScopedBean applicationScopedBean;
 
+    @Inject
+    private DynamicMockManager mockManager;
+
     @Test
     public void injectionTest()
     {
-        Assert.assertEquals(14, applicationScopedBean.getValue());
+        ApplicationScopedBean applicationScopedBean = mock(ApplicationScopedBean.class);
+        when(applicationScopedBean.getValue()).thenReturn(7);
+        mockManager.addMock(applicationScopedBean);
+
+        Assert.assertEquals(new Integer(7), this.applicationScopedBean.getValue());
     }
 }
