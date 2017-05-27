@@ -16,15 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.os890.cdi.template;
+package org.os890.cdi.test.event;
 
-import javax.enterprise.context.ApplicationScoped;
-
-@ApplicationScoped
-public class ApplicationScopedBean
+public class MockRegistrationEvent
 {
-    public Integer getValue()
+    private final Object mockInstance;
+
+    public MockRegistrationEvent(Object mockInstance)
     {
-        return 14;
+        this.mockInstance = mockInstance;
+    }
+
+    public <T> T getMockInstance(Class<T> targetClass)
+    {
+        return (T) mockInstance;
+    }
+
+    public boolean providesMockFor(Class<?> beanClass)
+    {
+        return beanClass.isAssignableFrom(mockInstance.getClass()) ||
+                (!beanClass.getSuperclass().equals(Object.class) && beanClass.getSuperclass().isAssignableFrom(mockInstance.getClass()));
     }
 }

@@ -16,15 +16,34 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.os890.cdi.template;
+package org.os890.cdi.test;
 
-import javax.enterprise.context.ApplicationScoped;
+import org.os890.cdi.template.RequestScopedBean;
+import org.os890.cdi.test.event.MockRegistrationEvent;
 
-@ApplicationScoped
-public class ApplicationScopedBean
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Specializes;
+
+@Specializes
+public class MockAwareRequestScopedBean extends RequestScopedBean
 {
+    private RequestScopedBean mockedRequestScopedBean;
+
+    protected void onMockRegistrationEvent(@Observes MockRegistrationEvent mockRegistrationEvent)
+    {
+        if (mockRegistrationEvent.providesMockFor(getClass()))
+        {
+            this.mockedRequestScopedBean = mockRegistrationEvent.getMockInstance(RequestScopedBean.class);
+        }
+    }
+
+    /*
+     * generated delegation
+     */
+
+    @Override
     public Integer getValue()
     {
-        return 14;
+        return mockedRequestScopedBean.getValue();
     }
 }

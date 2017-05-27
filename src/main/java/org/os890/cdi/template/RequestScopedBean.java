@@ -18,13 +18,13 @@
  */
 package org.os890.cdi.template;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 
-@ApplicationScoped
-public class ApplicationScopedBean
+@RequestScoped
+public class RequestScopedBean
 {
     public Integer getValue()
     {
-        return 14;
+        return 28;
     }
 }
