@@ -19,31 +19,27 @@
 package org.os890.cdi.test;
 
 import org.os890.cdi.template.RequestScopedBean;
-import org.os890.cdi.test.event.MockRegistrationEvent;
 
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Specializes;
+import javax.enterprise.inject.Typed;
 
-@Specializes
+//only needed with cdi-producers if one test-case needs to use different mocks for the same bean
+@Typed()
 public class MockAwareRequestScopedBean extends RequestScopedBean
 {
-    private RequestScopedBean mockedRequestScopedBean;
-
-    protected void onMockRegistrationEvent(@Observes MockRegistrationEvent mockRegistrationEvent)
-    {
-        if (mockRegistrationEvent.providesMockFor(getClass()))
-        {
-            this.mockedRequestScopedBean = mockRegistrationEvent.getMockInstance(RequestScopedBean.class);
-        }
-    }
+    private RequestScopedBean mockedInstance;
 
     /*
-     * generated delegation
+     * generated
      */
+
+    public void setMockedInstance(RequestScopedBean mockedInstance)
+    {
+        this.mockedInstance = mockedInstance;
+    }
 
     @Override
     public Integer getValue()
     {
-        return mockedRequestScopedBean.getValue();
+        return mockedInstance.getValue();
     }
 }

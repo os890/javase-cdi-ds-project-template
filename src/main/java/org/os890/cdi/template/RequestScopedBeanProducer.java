@@ -18,13 +18,17 @@
  */
 package org.os890.cdi.template;
 
-import javax.enterprise.inject.Typed;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
 
-@Typed()
-public class RequestScopedBean
+@ApplicationScoped
+public class RequestScopedBeanProducer
 {
-    public Integer getValue()
+    @Produces
+    @RequestScoped
+    protected RequestScopedBean createRequestScopedBean()
     {
-        return 28;
+        return new RequestScopedBean();
     }
 }
